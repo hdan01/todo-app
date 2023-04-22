@@ -1,0 +1,41 @@
+const handleFilter = (e: React.ChangeEvent<HTMLSelectElement>) => {
+		setFilter(Number(e.target.value));
+	};
+
+	useEffect(() => {
+		const data = [...todoList].filter((todo) =>
+			filter === 0 ? true : todo.done === (filter === 1 ? false : true)
+		);
+		setTodoListFiltered(data);
+	}, [todoList, filter]);
+
+HANDLE SUBMIT
+  const data = [...todoList];
+		data.push({
+			id: new Date().getTime(),
+			name: input,
+			done: false,
+		});
+		setTodoList(data);
+		setInput("");
+		if (inputNode.current) {
+			inputNode.current.focus();
+		}
+
+
+
+export function Modal({ handleClose, show, children }: any) {
+	const showHideClassName = show
+		? `${classes.backdrop} display-backdrop`
+		: `${classes.backdrop} display-none`;
+
+	return (
+		<>
+			<div className={showHideClassName} onClick={handleClose}>
+				<dialog open className={classes.modal}>
+					{children}
+				</dialog>
+			</div>
+		</>
+	);
+}
